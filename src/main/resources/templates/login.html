@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+<div class="login-container">
+    <h2>Login</h2>
+    <form th:action="@{/login}" method="post">
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <!-- name 속성 추가 -->
+            <input type="text" id="username" name="username" required autofocus>
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <!-- name 속성 추가 -->
+            <input type="password" id="password" name="password" required>
+        </div>
+        <div class="form-group">
+            <button type="submit">Login</button>
+        </div>
+        <p th:if="${param.error}">
+            Invalid username and password.
+        </p>
+        <p th:if="${param.logout}">
+            You have been logged out.
+        </p>
+    </form>
+</div>
+</body>
+</html>
