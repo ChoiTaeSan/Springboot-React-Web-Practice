@@ -10,10 +10,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .csrf().disable()
+                .cors().and() // CORS 설정 활성화
+                .csrf().disable() // CSRF 보호 비활성화 (필요에 따라)
                 .authorizeRequests()
-                .antMatchers("/register", "/login").permitAll()
-                .anyRequest().authenticated()
+                .antMatchers("/register", "/login").permitAll() // 특정 경로 접근 허용
+                .anyRequest().authenticated() // 나머지 요청은 인증 필요
                 .and()
                 .formLogin()
                 .loginPage("/login")
@@ -27,4 +28,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
 }
