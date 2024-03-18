@@ -13,27 +13,44 @@ function Login() {
                 password
             });
             console.log(response.data);
-            // 로그인 성공 후 처리
+            if (response.data.success) {
+                // 로그인 성공 후 처리, 예: 대시보드로 리다이렉션
+            } else {
+                // 로그인 실패 메시지 표시
+            }
         } catch (error) {
             console.error("Login error:", error);
             // 에러 처리
         }
     };
 
+
     return (
         <form onSubmit={handleLogin}>
-            <input
-                type="text"
-                placeholder="Username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-            />
-            <input
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-            />
+            <div>
+                <label htmlFor="username">Username:</label>
+                <input
+                    id="username"
+                    name="username"
+                    type="text"
+                    placeholder="Username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    autoComplete="username" // 자동 완성 유형 지정
+                />
+            </div>
+            <div>
+                <label htmlFor="password">Password:</label>
+                <input
+                    id="password"
+                    name="password"
+                    type="password"
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    autoComplete="current-password" // 자동 완성 유형 지정
+                />
+            </div>
             <button type="submit">Login</button>
         </form>
     );
