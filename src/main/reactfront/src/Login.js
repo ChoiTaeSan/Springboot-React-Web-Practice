@@ -6,21 +6,18 @@ function Login() {
     const [password, setPassword] = useState('');
 
     const handleLogin = async (e) => {
-        e.preventDefault();
+        e.preventDefault(); // 폼 제출 시 페이지 새로고침 방지
         try {
+            // POST 요청으로 로그인 시도
             const response = await axios.post('http://localhost:8080/api/login', {
-                username,
-                password
+                username: '사용자명',
+                password: '비밀번호'
             });
-            console.log(response.data);
-            if (response.data.success) {
-                // 로그인 성공 후 처리, 예: 대시보드로 리다이렉션
-            } else {
-                // 로그인 실패 메시지 표시
-            }
+            console.log('Login success:', response.data);
+            // 로그인 성공 후 처리
         } catch (error) {
-            console.error("Login error:", error);
-            // 에러 처리
+            console.error('Login error:', error);
+            // 로그인 실패 처리
         }
     };
 
